@@ -1,0 +1,28 @@
+class: ExternalEventCache
+table: external_event_cache
+fields:
+  provider: String
+  providerEventId: String
+  queryKey: String
+  title: String
+  category: String
+  startsAt: DateTime
+  endsAt: DateTime?
+  # Coordinates are only stored when the provider supplies them.
+  latitude: double?
+  longitude: double?
+  venueLabel: String
+  organizerName: String?
+  imageUrl: String?
+  sourceUrl: String
+  rawHash: String
+  fetchedAt: DateTime
+  expiresAt: DateTime
+indexes:
+  external_event_cache_lookup:
+    fields: provider
+  external_event_cache_query:
+    fields: queryKey, startsAt
+  external_event_cache_unique:
+    fields: provider, queryKey, providerEventId
+    unique: true

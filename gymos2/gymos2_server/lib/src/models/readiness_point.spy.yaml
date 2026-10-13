@@ -1,0 +1,7 @@
+class: ReadinessPoint
+fields:
+  day: DateTime
+  totalLoad: double
+  highCount: int
+  moderateCount: int
+  sessions: int

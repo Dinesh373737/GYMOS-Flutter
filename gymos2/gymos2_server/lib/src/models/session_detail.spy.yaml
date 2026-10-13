@@ -1,0 +1,7 @@
+class: SessionDetail
+fields:
+  session: WorkoutSession
+  sets: List<WorkoutSet>
+  plan: PlanDetail
+  # Sets from the most recent finished session for each planned exercise.
+  previousSets: List<WorkoutSet>?

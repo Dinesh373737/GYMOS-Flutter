@@ -1,0 +1,10 @@
+class: DashboardData
+fields:
+  profile: UserProfile
+  society: Society
+  equipment: List<SocietyEquipment>
+  readiness: List<TrainingReadiness>
+  recentSessions: List<WorkoutSession>
+  events: List<CommunityEvent>
+  completedSets: int
+  volumeKg: double

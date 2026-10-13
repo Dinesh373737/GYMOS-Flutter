@@ -1,0 +1,12 @@
+class: SocietyMembership
+table: society_membership
+fields:
+  societyId: int, relation(parent=society)
+  userId: int, relation(parent=user_profile)
+  role: String
+  joinedAt: DateTime
+  isActive: bool
+indexes:
+  society_membership_unique:
+    fields: societyId, userId
+    unique: true

@@ -1,0 +1,14 @@
+class: AgentAction
+table: agent_action
+fields:
+  conversationId: int, relation(parent=agent_conversation)
+  userId: int, relation(parent=user_profile)
+  toolName: String
+  requestSummary: String
+  resultSummary: String
+  status: String
+  createdAt: DateTime
+  durationMs: int
+indexes:
+  agent_action_lookup:
+    fields: conversationId

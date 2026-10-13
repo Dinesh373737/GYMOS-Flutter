@@ -1,0 +1,10 @@
+class: ExerciseEquipment
+table: exercise_equipment
+fields:
+  exerciseId: int, relation(parent=exercise)
+  equipmentId: int, relation(parent=equipment_catalog)
+  required: bool
+indexes:
+  exercise_equipment_unique:
+    fields: exerciseId, equipmentId
+    unique: true

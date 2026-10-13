@@ -1,0 +1,6 @@
+class: AgentReply
+fields:
+  conversationId: int
+  message: String
+  actions: List<AgentAction>
+  planId: int?

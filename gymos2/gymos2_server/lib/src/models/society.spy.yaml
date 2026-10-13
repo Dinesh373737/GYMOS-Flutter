@@ -1,0 +1,15 @@
+class: Society
+table: society
+fields:
+  name: String
+  addressLabel: String
+  inviteCode: String
+  createdBy: String
+  createdAt: DateTime
+  isActive: bool
+indexes:
+  society_unique:
+    fields: inviteCode
+    unique: true
+  society_lookup:
+    fields: name

@@ -1,0 +1,17 @@
+class: WorkoutSet
+table: workout_set
+fields:
+  sessionId: int, relation(parent=workout_session)
+  exerciseId: int, relation(parent=exercise)
+  setNumber: int
+  reps: int?
+  weightKg: double?
+  durationSec: int?
+  rpe: double?
+  completedAt: DateTime
+indexes:
+  workout_set_lookup:
+    fields: sessionId
+  workout_set_identity:
+    fields: sessionId, exerciseId, setNumber
+    unique: true

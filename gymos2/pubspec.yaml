@@ -1,0 +1,11 @@
+name: _
+publish_to: none
+
+environment:
+  sdk: '^3.12.2'
+
+workspace:
+  - gymos2_client
+  - gymos2_server
+  - gymos2_flutter
+

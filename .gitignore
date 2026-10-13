@@ -1,0 +1,15 @@
+original-daa/
+**/.dart_tool/
+**/build/
+**/.serverpod/
+**/config/passwords.yaml
+**/local.properties
+**/.flutter-plugins-dependencies
+**/.scloud/
+**/.env
+*.log
+.local-demo.json
+
+# Stale local analyzer/format logs
+analysis-result.txt
+format-result.txt

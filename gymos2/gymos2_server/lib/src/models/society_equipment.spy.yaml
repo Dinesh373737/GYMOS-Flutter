@@ -1,0 +1,13 @@
+class: SocietyEquipment
+table: society_equipment
+fields:
+  societyId: int, relation(parent=society)
+  equipmentId: int, relation(parent=equipment_catalog)
+  label: String
+  quantity: int
+  status: String
+  locationLabel: String
+  lastServicedAt: DateTime?
+indexes:
+  society_equipment_lookup:
+    fields: societyId

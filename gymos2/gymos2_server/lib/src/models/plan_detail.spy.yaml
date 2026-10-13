@@ -1,0 +1,5 @@
+class: PlanDetail
+fields:
+  plan: WorkoutPlan
+  items: List<WorkoutPlanItem>
+  exercises: List<Exercise>

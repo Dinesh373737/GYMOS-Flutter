@@ -1,0 +1,15 @@
+class: Notification
+table: notification
+fields:
+  userId: int, relation(parent=user_profile)
+  type: String
+  title: String
+  body: String
+  link: String?
+  readAt: DateTime?
+  createdAt: DateTime
+indexes:
+  notification_lookup:
+    fields: userId
+  notification_recent:
+    fields: userId, createdAt

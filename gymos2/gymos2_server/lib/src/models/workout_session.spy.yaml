@@ -1,0 +1,14 @@
+class: WorkoutSession
+table: workout_session
+fields:
+  userId: int, relation(parent=user_profile)
+  planId: int, relation(parent=workout_plan)
+  title: String
+  startedAt: DateTime
+  endedAt: DateTime?
+  durationMin: int?
+  notes: String
+  perceivedEffort: double?
+indexes:
+  workout_session_lookup:
+    fields: userId

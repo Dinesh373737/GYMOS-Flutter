@@ -1,0 +1,1215 @@
+{
+  "exercises": [
+    {
+      "slug": "bench_press",
+      "name": "Barbell Bench Press",
+      "instructions": "Classic chest compound. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "intermediate",
+      "pattern": "push",
+      "type": "strength",
+      "duration": 8,
+      "muscles": [
+        [
+          "chest",
+          "true"
+        ],
+        [
+          "triceps",
+          "false"
+        ],
+        [
+          "shoulders",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "barbell",
+          "false"
+        ],
+        [
+          "bench",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "db_bench",
+      "name": "Dumbbell Bench Press",
+      "instructions": "DB chest press. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "intermediate",
+      "pattern": "push",
+      "type": "strength",
+      "duration": 8,
+      "muscles": [
+        [
+          "chest",
+          "true"
+        ],
+        [
+          "triceps",
+          "false"
+        ],
+        [
+          "shoulders",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "dumbbell",
+          "false"
+        ],
+        [
+          "bench",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "incline_db",
+      "name": "Incline Dumbbell Press",
+      "instructions": "Upper chest. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "intermediate",
+      "pattern": "push",
+      "type": "strength",
+      "duration": 8,
+      "muscles": [
+        [
+          "chest",
+          "true"
+        ],
+        [
+          "shoulders",
+          "false"
+        ],
+        [
+          "triceps",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "dumbbell",
+          "false"
+        ],
+        [
+          "bench",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "pushups",
+      "name": "Push-ups",
+      "instructions": "Bodyweight chest. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "push",
+      "type": "strength",
+      "duration": 5,
+      "muscles": [
+        [
+          "chest",
+          "true"
+        ],
+        [
+          "triceps",
+          "false"
+        ],
+        [
+          "core",
+          "false"
+        ]
+      ],
+      "equipment": []
+    },
+    {
+      "slug": "cable_fly",
+      "name": "Cable Fly",
+      "instructions": "Chest isolation. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "intermediate",
+      "pattern": "push",
+      "type": "isolation",
+      "duration": 6,
+      "muscles": [
+        [
+          "chest",
+          "true"
+        ]
+      ],
+      "equipment": [
+        [
+          "cable",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "chest_press_m",
+      "name": "Machine Chest Press",
+      "instructions": "Guided press. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "push",
+      "type": "strength",
+      "duration": 6,
+      "muscles": [
+        [
+          "chest",
+          "true"
+        ],
+        [
+          "triceps",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "chestpress",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "floor_press",
+      "name": "Floor Press",
+      "instructions": "Limited ROM press. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "intermediate",
+      "pattern": "push",
+      "type": "strength",
+      "duration": 7,
+      "muscles": [
+        [
+          "chest",
+          "true"
+        ],
+        [
+          "triceps",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "barbell",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "band_pushup",
+      "name": "Banded Push-up",
+      "instructions": "Band-assisted push-up. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "intermediate",
+      "pattern": "push",
+      "type": "strength",
+      "duration": 5,
+      "muscles": [
+        [
+          "chest",
+          "true"
+        ],
+        [
+          "triceps",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "bands",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "pullups",
+      "name": "Pull-ups",
+      "instructions": "Bodyweight back. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "intermediate",
+      "pattern": "pull",
+      "type": "strength",
+      "duration": 6,
+      "muscles": [
+        [
+          "back",
+          "true"
+        ],
+        [
+          "biceps",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "pullupbar",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "bent_row",
+      "name": "Barbell Row",
+      "instructions": "Back compound. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "intermediate",
+      "pattern": "pull",
+      "type": "strength",
+      "duration": 8,
+      "muscles": [
+        [
+          "back",
+          "true"
+        ],
+        [
+          "biceps",
+          "false"
+        ],
+        [
+          "forearms",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "barbell",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "db_row",
+      "name": "Dumbbell Row",
+      "instructions": "Single-arm row. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "pull",
+      "type": "strength",
+      "duration": 7,
+      "muscles": [
+        [
+          "back",
+          "true"
+        ],
+        [
+          "biceps",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "dumbbell",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "lat_pull",
+      "name": "Lat Pulldown",
+      "instructions": "Machine pulldown. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "pull",
+      "type": "strength",
+      "duration": 6,
+      "muscles": [
+        [
+          "back",
+          "true"
+        ],
+        [
+          "biceps",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "latpull",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "cable_row",
+      "name": "Cable Row",
+      "instructions": "Seated cable row. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "intermediate",
+      "pattern": "pull",
+      "type": "strength",
+      "duration": 7,
+      "muscles": [
+        [
+          "back",
+          "true"
+        ],
+        [
+          "biceps",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "cable",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "band_row",
+      "name": "Band Row",
+      "instructions": "Resistance band row. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "pull",
+      "type": "strength",
+      "duration": 5,
+      "muscles": [
+        [
+          "back",
+          "true"
+        ],
+        [
+          "biceps",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "bands",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "ohp",
+      "name": "Overhead Press",
+      "instructions": "Barbell press. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "intermediate",
+      "pattern": "push",
+      "type": "strength",
+      "duration": 7,
+      "muscles": [
+        [
+          "shoulders",
+          "true"
+        ],
+        [
+          "triceps",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "barbell",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "db_shoulder",
+      "name": "DB Shoulder Press",
+      "instructions": "Dumbbell press. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "intermediate",
+      "pattern": "push",
+      "type": "strength",
+      "duration": 7,
+      "muscles": [
+        [
+          "shoulders",
+          "true"
+        ],
+        [
+          "triceps",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "dumbbell",
+          "false"
+        ],
+        [
+          "bench",
+          "true"
+        ]
+      ]
+    },
+    {
+      "slug": "lateral_raise",
+      "name": "Lateral Raise",
+      "instructions": "Shoulder isolation. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "push",
+      "type": "isolation",
+      "duration": 5,
+      "muscles": [
+        [
+          "shoulders",
+          "true"
+        ]
+      ],
+      "equipment": [
+        [
+          "dumbbell",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "band_press",
+      "name": "Band Overhead Press",
+      "instructions": "Band press. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "push",
+      "type": "strength",
+      "duration": 5,
+      "muscles": [
+        [
+          "shoulders",
+          "true"
+        ],
+        [
+          "triceps",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "bands",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "bb_curl",
+      "name": "Barbell Curl",
+      "instructions": "Bicep curl. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "pull",
+      "type": "isolation",
+      "duration": 5,
+      "muscles": [
+        [
+          "biceps",
+          "true"
+        ],
+        [
+          "forearms",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "barbell",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "db_curl",
+      "name": "Dumbbell Curl",
+      "instructions": "DB curl. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "pull",
+      "type": "isolation",
+      "duration": 5,
+      "muscles": [
+        [
+          "biceps",
+          "true"
+        ]
+      ],
+      "equipment": [
+        [
+          "dumbbell",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "band_curl",
+      "name": "Band Curl",
+      "instructions": "Band curl. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "pull",
+      "type": "isolation",
+      "duration": 4,
+      "muscles": [
+        [
+          "biceps",
+          "true"
+        ]
+      ],
+      "equipment": [
+        [
+          "bands",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "dips",
+      "name": "Dips",
+      "instructions": "Tricep compound. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "intermediate",
+      "pattern": "push",
+      "type": "strength",
+      "duration": 6,
+      "muscles": [
+        [
+          "triceps",
+          "true"
+        ],
+        [
+          "chest",
+          "false"
+        ],
+        [
+          "shoulders",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "dipstation",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "cable_push",
+      "name": "Cable Pushdown",
+      "instructions": "Tricep pushdown. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "push",
+      "type": "isolation",
+      "duration": 5,
+      "muscles": [
+        [
+          "triceps",
+          "true"
+        ]
+      ],
+      "equipment": [
+        [
+          "cable",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "db_kickback",
+      "name": "DB Kickback",
+      "instructions": "Tricep kickback. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "push",
+      "type": "isolation",
+      "duration": 5,
+      "muscles": [
+        [
+          "triceps",
+          "true"
+        ]
+      ],
+      "equipment": [
+        [
+          "dumbbell",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "squat",
+      "name": "Barbell Squat",
+      "instructions": "King of legs. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "intermediate",
+      "pattern": "squat",
+      "type": "compound",
+      "duration": 10,
+      "muscles": [
+        [
+          "quads",
+          "true"
+        ],
+        [
+          "glutes",
+          "false"
+        ],
+        [
+          "hamstrings",
+          "false"
+        ],
+        [
+          "core",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "barbell",
+          "false"
+        ],
+        [
+          "sqrack",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "goblet_sq",
+      "name": "Goblet Squat",
+      "instructions": "DB squat. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "squat",
+      "type": "strength",
+      "duration": 7,
+      "muscles": [
+        [
+          "quads",
+          "true"
+        ],
+        [
+          "glutes",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "dumbbell",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "leg_press_ex",
+      "name": "Leg Press",
+      "instructions": "Machine legs. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "squat",
+      "type": "strength",
+      "duration": 8,
+      "muscles": [
+        [
+          "quads",
+          "true"
+        ],
+        [
+          "glutes",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "legpress",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "lunges",
+      "name": "Walking Lunges",
+      "instructions": "Unilateral legs. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "intermediate",
+      "pattern": "squat",
+      "type": "strength",
+      "duration": 7,
+      "muscles": [
+        [
+          "quads",
+          "true"
+        ],
+        [
+          "glutes",
+          "false"
+        ],
+        [
+          "hamstrings",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "dumbbell",
+          "true"
+        ]
+      ]
+    },
+    {
+      "slug": "deadlift",
+      "name": "Barbell Deadlift",
+      "instructions": "Full body pull. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "advanced",
+      "pattern": "hinge",
+      "type": "compound",
+      "duration": 10,
+      "muscles": [
+        [
+          "hamstrings",
+          "true"
+        ],
+        [
+          "glutes",
+          "true"
+        ],
+        [
+          "back",
+          "false"
+        ],
+        [
+          "core",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "barbell",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "rdl",
+      "name": "Romanian Deadlift",
+      "instructions": "Hamstring focus. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "intermediate",
+      "pattern": "hinge",
+      "type": "strength",
+      "duration": 8,
+      "muscles": [
+        [
+          "hamstrings",
+          "true"
+        ],
+        [
+          "glutes",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "barbell",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "db_rdl",
+      "name": "Dumbbell RDL",
+      "instructions": "DB hamstring. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "intermediate",
+      "pattern": "hinge",
+      "type": "strength",
+      "duration": 7,
+      "muscles": [
+        [
+          "hamstrings",
+          "true"
+        ],
+        [
+          "glutes",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "dumbbell",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "bodyweight_sq",
+      "name": "Bodyweight Squat",
+      "instructions": "No equipment squat. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "squat",
+      "type": "strength",
+      "duration": 5,
+      "muscles": [
+        [
+          "quads",
+          "true"
+        ],
+        [
+          "glutes",
+          "false"
+        ]
+      ],
+      "equipment": []
+    },
+    {
+      "slug": "kb_swing",
+      "name": "Kettlebell Swing",
+      "instructions": "Hip hinge explosive. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "intermediate",
+      "pattern": "hinge",
+      "type": "strength",
+      "duration": 6,
+      "muscles": [
+        [
+          "glutes",
+          "true"
+        ],
+        [
+          "hamstrings",
+          "false"
+        ],
+        [
+          "core",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "kettlebell",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "plank",
+      "name": "Plank",
+      "instructions": "Isometric core. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "core",
+      "type": "strength",
+      "duration": 4,
+      "muscles": [
+        [
+          "core",
+          "true"
+        ]
+      ],
+      "equipment": [
+        [
+          "yogamat",
+          "true"
+        ]
+      ]
+    },
+    {
+      "slug": "crunches",
+      "name": "Crunches",
+      "instructions": "Basic abs. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "core",
+      "type": "isolation",
+      "duration": 4,
+      "muscles": [
+        [
+          "core",
+          "true"
+        ]
+      ],
+      "equipment": [
+        [
+          "yogamat",
+          "true"
+        ]
+      ]
+    },
+    {
+      "slug": "cable_crunch",
+      "name": "Cable Crunch",
+      "instructions": "Weighted abs. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "intermediate",
+      "pattern": "core",
+      "type": "isolation",
+      "duration": 5,
+      "muscles": [
+        [
+          "core",
+          "true"
+        ]
+      ],
+      "equipment": [
+        [
+          "cable",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "treadmill_run",
+      "name": "Treadmill Run",
+      "instructions": "Cardio. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "cardio",
+      "type": "cardio",
+      "duration": 15,
+      "muscles": [
+        [
+          "quads",
+          "false"
+        ],
+        [
+          "calves",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "treadmill",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "bike_ride",
+      "name": "Stationary Bike",
+      "instructions": "Cardio. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "cardio",
+      "type": "cardio",
+      "duration": 15,
+      "muscles": [
+        [
+          "quads",
+          "false"
+        ],
+        [
+          "calves",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "bike",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "rowing_ex",
+      "name": "Rowing",
+      "instructions": "Full-body cardio. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "intermediate",
+      "pattern": "cardio",
+      "type": "cardio",
+      "duration": 10,
+      "muscles": [
+        [
+          "back",
+          "false"
+        ],
+        [
+          "quads",
+          "false"
+        ],
+        [
+          "core",
+          "false"
+        ]
+      ],
+      "equipment": [
+        [
+          "rower",
+          "false"
+        ]
+      ]
+    },
+    {
+      "slug": "jump_rope",
+      "name": "Jump Rope",
+      "instructions": "HIIT cardio. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "intermediate",
+      "pattern": "cardio",
+      "type": "warmup",
+      "duration": 5,
+      "muscles": [
+        [
+          "calves",
+          "false"
+        ],
+        [
+          "core",
+          "false"
+        ]
+      ],
+      "equipment": []
+    },
+    {
+      "slug": "arm_circles",
+      "name": "Arm Circles",
+      "instructions": "Shoulder warmup. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "warmup",
+      "type": "warmup",
+      "duration": 3,
+      "muscles": [
+        [
+          "shoulders",
+          "false"
+        ]
+      ],
+      "equipment": []
+    },
+    {
+      "slug": "leg_swings",
+      "name": "Leg Swings",
+      "instructions": "Hip warmup. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "warmup",
+      "type": "warmup",
+      "duration": 3,
+      "muscles": [
+        [
+          "quads",
+          "false"
+        ],
+        [
+          "hamstrings",
+          "false"
+        ]
+      ],
+      "equipment": []
+    },
+    {
+      "slug": "foam_roll",
+      "name": "Foam Rolling",
+      "instructions": "Recovery. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "cooldown",
+      "type": "cooldown",
+      "duration": 5,
+      "muscles": [],
+      "equipment": [
+        [
+          "foam",
+          "true"
+        ]
+      ]
+    },
+    {
+      "slug": "stretch",
+      "name": "Static Stretching",
+      "instructions": "Cooldown. Move slowly through a comfortable range, keep control, and stop if the movement causes pain.",
+      "difficulty": "beginner",
+      "pattern": "cooldown",
+      "type": "cooldown",
+      "duration": 5,
+      "muscles": [],
+      "equipment": [
+        [
+          "yogamat",
+          "true"
+        ]
+      ]
+    }
+  ],
+  "equipment": [
+    [
+      "barbell",
+      "Barbell",
+      "free_weight",
+      "Standard Olympic barbell"
+    ],
+    [
+      "dumbbell",
+      "Dumbbell",
+      "free_weight",
+      "Adjustable dumbbells"
+    ],
+    [
+      "ezbar",
+      "EZ-Bar",
+      "free_weight",
+      "Curved barbell for curls"
+    ],
+    [
+      "kettlebell",
+      "Kettlebell",
+      "free_weight",
+      "Cast iron kettlebell"
+    ],
+    [
+      "cable",
+      "Cable Machine",
+      "machine",
+      "Adjustable cable pulley system"
+    ],
+    [
+      "latpull",
+      "Lat Pulldown Machine",
+      "machine",
+      "Lat pulldown station"
+    ],
+    [
+      "legpress",
+      "Leg Press Machine",
+      "machine",
+      "45-degree leg press"
+    ],
+    [
+      "smith",
+      "Smith Machine",
+      "machine",
+      "Guided barbell on rails"
+    ],
+    [
+      "chestpress",
+      "Chest Press Machine",
+      "machine",
+      "Seated chest press"
+    ],
+    [
+      "treadmill",
+      "Treadmill",
+      "cardio",
+      "Motorized treadmill"
+    ],
+    [
+      "bike",
+      "Stationary Bike",
+      "cardio",
+      "Indoor cycling bike"
+    ],
+    [
+      "rower",
+      "Rowing Machine",
+      "cardio",
+      "Indoor rowing ergometer"
+    ],
+    [
+      "elliptical",
+      "Elliptical",
+      "cardio",
+      "Elliptical trainer"
+    ],
+    [
+      "pullupbar",
+      "Pull-up Bar",
+      "bodyweight",
+      "Wall mounted pull-up bar"
+    ],
+    [
+      "bands",
+      "Resistance Bands",
+      "accessory",
+      "Set of resistance bands"
+    ],
+    [
+      "yogamat",
+      "Yoga Mat",
+      "accessory",
+      "Exercise mat"
+    ],
+    [
+      "bench",
+      "Flat/Incline Bench",
+      "furniture",
+      "Adjustable weight bench"
+    ],
+    [
+      "sqrack",
+      "Squat Rack",
+      "furniture",
+      "Power rack"
+    ],
+    [
+      "dipstation",
+      "Dip Station",
+      "bodyweight",
+      "Parallel dip bars"
+    ],
+    [
+      "foam",
+      "Foam Roller",
+      "accessory",
+      "Recovery foam roller"
+    ]
+  ]
+}

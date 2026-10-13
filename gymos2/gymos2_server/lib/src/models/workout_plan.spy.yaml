@@ -1,0 +1,13 @@
+class: WorkoutPlan
+table: workout_plan
+fields:
+  userId: int, relation(parent=user_profile)
+  title: String
+  createdByType: String
+  target: String
+  plannedDurationMin: int
+  createdAt: DateTime
+  status: String
+indexes:
+  workout_plan_lookup:
+    fields: userId

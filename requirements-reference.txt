@@ -1,0 +1,581 @@
+GymOS 2.0
+ASTRA MASTER IMPLEMENTATION PROMPT
+Serverpod Hackathon Edition
+Project direction
+AI-powered community fitness platform rebuilt from the existing GymOS DAA project.
+Core stack
+Flutter + Serverpod 4 + PostgreSQL + Serverpod Auth/Storage/Streaming + agentic LLM + on-device pose analysis.
+MVP emphasis
+Working user journey, real backend, polished UI, photo-based form checks, agentic coach, events + map, equipment + maintenance.
+Explicitly excluded
+Live rep counting, DAA algorithm visualizer, algorithm-name UI, fake critical flows, medical diagnosis.
+Prepared for direct copy/paste into Astra
+IMPORTANT ENVIRONMENT ASSUMPTION
+Flutter, Dart, the required Flutter platform tooling, and Serverpod are already installed and configured. Astra must not waste time reinstalling or upgrading them unless an actual command fails and proves a missing dependency.
+
+How to use this document
+The section titled “BEGIN ASTRA MASTER PROMPT” is written directly to the coding agent. Paste that entire section into Astra. The remaining reference section records the official sources and implementation assumptions used to create the prompt.
+• Give Astra repository access to: https://github.com/kammarohan55-crypto/daa.git
+• Tell Astra to preserve the original repository/history and create the Serverpod rewrite in a clean branch or new project folder rather than destructively overwriting the working DAA version.
+• Provide the required external API keys only through secure secret configuration. Never paste production secrets into source files or commits.
+• Build the MVP in the priority order defined below. Do not start optional/stretch features until the primary judge demo flow works end-to-end.
+Hackathon lens
+The current judging rubric is 30% working product, 25% meaningful Serverpod usage, 25% craft/technical creativity, and 20% usefulness. The implementation order below is deliberately optimized for that rubric.
+
+BEGIN ASTRA MASTER PROMPT
+1. Your role and mission
+You are Astra, acting as the senior full-stack engineer, Flutter engineer, Serverpod backend engineer, AI integration engineer, product designer, test engineer, and deployment engineer for a hackathon project named GymOS 2.0.
+Your task is to rebuild and substantially improve the existing GymOS project into a polished, genuinely useful full-stack application. The current repository began as a Design and Analysis of Algorithms (DAA) project, so several algorithms and a separate visualizer were included mainly to satisfy coursework requirements. Treat the old codebase as a source of domain ideas, data, flows, and feature behavior - not as an architecture that must be preserved.
+Repository to inspect before coding:
+https://github.com/kammarohan55-crypto/daa.git
+Primary product thesis
+GymOS 2.0 should feel like a real community fitness operating system: personalized workouts, workout logging, equipment awareness, photo-based exercise form checks, progress/readiness analytics, an agentic GymOS coach that uses real application tools, and a map-based community/events layer.
+2. Non-negotiable environment assumptions
+Assume the following are already satisfied on the development machine. Do not begin by reinstalling the toolchain:
+☑ Flutter is already installed at a Serverpod-compatible version and Flutter platform requirements are satisfied.
+☑ Dart is already available through Flutter.
+☑ Serverpod is already installed and usable.
+☑ The developer can run Flutter and Serverpod commands from the terminal.
+☑ Git is available and the existing repository can be cloned/checked out.
+Only perform environment repair if an actual command fails. If a dependency is missing, fix only that dependency and continue. Never perform unnecessary global upgrades during the hackathon build.
+3. Hackathon rules and optimization target
+Build specifically for the “Build Something Real: The Serverpod Hackathon” judging model. Optimize engineering decisions around these criteria:
+Item
+Directive
+30% - Does it work?
+The app must run. The primary user journey must complete. Do not fake a critical feature. Real sign-in, persistence, workout creation/logging, agent tool calls, form analysis, event retrieval, and map interaction must function.
+25% - Use of Serverpod
+Serverpod must do real backend work: authentication, database models and queries, generated client types, endpoints, file storage where needed, streaming for live state, scheduled/background work where useful, and deployment.
+25% - Craft + technical creativity
+The app must look intentional and polished. AI must be integrated as a real tool-using workflow, not a cosmetic chatbot. Computer vision and mapping should be part of a coherent product.
+20% - Usefulness
+Keep the user/problem clear: residents and small/shared gyms need personalized guidance, equipment awareness, reliable workout history, usable form feedback, and ways to discover/join fitness activities.
+Agentic/AI-assisted coding is allowed by the hackathon. AI-generated code is not penalized. However, the resulting application still needs to be understandable, maintainable, testable, and actually functional.
+Submission deadline context: October 14, 2026. Treat the day before as the internal feature freeze. Do not jeopardize a working build for a last-minute stretch feature.
+4. What to retain, remove, and replace from the existing GymOS
+4.1 Retain conceptually
+• Multi-tenant society/gym concept with Admin and Resident/member roles.
+• Authentication and member management.
+• Exercise library with muscles, equipment requirements, difficulty, instructions, and movement type.
+• Gym equipment inventory and availability state.
+• Maintenance issue reporting and admin resolution workflow.
+• Workout planning and workout logging with sets, reps, weight, duration, and RPE-like session effort where appropriate.
+• Exercise alternatives when required equipment is unavailable.
+• Progress/history analytics.
+• Muscle training-load/readiness visualization, but rename and reframe the old “fatigue percentage” so it is clearly an estimate rather than medical truth.
+4.2 Remove completely
+• The separate DAA algorithm visualizer application.
+• Any UI whose purpose is to show BFS, DFS, Knapsack DP tables, heaps, Greedy selection, or Topological Sort for coursework demonstration.
+• User-facing “algorithms used” labels.
+• Features that exist only because the old assignment required a named algorithm.
+• Hardcoded/demo-only flows presented as real production behavior.
+4.3 Replace or simplify
+• Replace the fixed Greedy recommendation score with a maintainable constraint + personalization engine based on actual user history, available equipment, time budget, goal, preferences, recent training load, and form-check history.
+• Replace forced Knapsack workout selection with straightforward domain logic that produces sensible sessions. A deterministic optimizer is acceptable if it helps, but it must not exist merely to demonstrate DAA.
+• Replace BFS/DFS branding with an “exercise alternatives” service using explicit relationships plus similarity/eligibility scoring.
+• Replace the old exact “muscle recovery percentage” with “estimated training readiness” or “recent training load” and make the uncertainty clear.
+5. Required technology stack
+Item
+Directive
+Frontend
+Flutter. Build Android first and keep web compatibility where practical. Use responsive layouts and Material 3 with a custom design system.
+Backend
+Serverpod 4, written in Dart. Do not keep Node/Express as the hackathon backend.
+Generated client
+Use Serverpod-generated Dart client calls. Do not hand-build REST endpoints for first-party app communication unless a specific integration truly needs raw HTTP.
+Database
+PostgreSQL through the Serverpod ORM and migrations. Embedded Postgres is acceptable for local development; production should use Serverpod Cloud managed Postgres if available.
+Authentication
+Serverpod auth (`serverpod_auth_idp`) with email/password as the mandatory path. Google sign-in can be added after email auth works.
+State management
+Riverpod (`flutter_riverpod`) with feature-scoped providers. Avoid one giant global mutable state object.
+Navigation
+`go_router` with auth-aware redirects and role-aware routes.
+Charts
+`fl_chart` or another lightweight Flutter-native chart package. Keep analytics readable and sparse.
+Image/camera
+Flutter `camera` / `image_picker` as appropriate. Photo capture is the MVP. Do not implement live rep counting.
+Pose analysis
+Google ML Kit Pose Detection as the underlying pose model. Prefer a compatible Flutter wrapper such as `google_mlkit_pose_detection`; do not pin an arbitrary version without checking compatibility.
+Map
+Official `google_maps_flutter` package using Google Maps Platform. Use map markers, info cards, camera movement, and external navigation links.
+Location
+`geolocator` (plus platform permissions) to obtain the user’s current position only when the user opens/discovers nearby events.
+External events
+AllEvents developer API. Query via the Serverpod backend, normalize/categorize/cache results, and merge them with GymOS community-created events.
+Agentic AI
+Groq API via server-side calls using local function/tool calling, with `openai/gpt-oss-120b` as the default agent model. Keep the AI provider and model behind an abstraction/config layer so either can be swapped later without changing Flutter UI code.
+QR utilities
+Optional after core MVP: `mobile_scanner` for equipment QR scans and `qr_flutter` for QR generation.
+Deployment
+Serverpod Cloud for backend + database + web hosting when ready. Mobile demo can run as a Flutter Android build against the deployed Serverpod API.
+6. Project/repository structure
+Preserve the original repository and create the Serverpod implementation cleanly. A normal Serverpod workspace should look like:
+gymos2/├── gymos2_server/      # Serverpod backend, models, endpoints, services├── gymos2_client/      # generated typed client└── gymos2_flutter/     # Flutter application
+Inside the Flutter package, use a feature-first structure. Suggested layout:
+lib/├── app/│   ├── router/│   ├── theme/│   └── app.dart├── core/│   ├── widgets/│   ├── utils/│   ├── constants/│   └── error_handling/├── features/│   ├── auth/│   ├── onboarding/│   ├── dashboard/│   ├── workouts/│   ├── form_coach/│   ├── progress/│   ├── readiness/│   ├── equipment/│   ├── maintenance/│   ├── events/│   ├── agent/│   ├── admin/│   └── profile/└── main.dart
+Inside the server package, separate endpoints from domain services. Keep external APIs in dedicated adapters. Suggested layout:
+lib/src/├── endpoints/├── models/├── services/│   ├── workout/│   ├── readiness/│   ├── form/│   ├── agent/│   ├── events/│   └── integrations/├── future_calls/├── seed/└── generated/
+7. Serverpod data model - minimum production-shaped schema
+Define Serverpod 4 models with `.spy.yaml` files, relations, useful indexes, timestamps, and ownership/tenant fields. Do not create a single JSON blob for the whole app. Use normalized tables where it materially helps the product.
+Model
+Key fields / intent
+UserProfile
+authUserId, displayName, role, societyId, experienceLevel, primaryGoal, preferredWorkoutDuration, onboardingComplete, createdAt, updatedAt
+Society
+name, addressLabel, inviteCode, createdBy, createdAt, isActive
+SocietyMembership
+societyId, authUserId/userProfileId, role, joinedAt, isActive
+Exercise
+name, slug, instructions, difficulty, movementPattern, exerciseType, defaultDurationMin, isActive
+MuscleGroup
+name, bodyArea
+ExerciseMuscle
+exerciseId, muscleGroupId, contributionType/weight
+EquipmentCatalog
+name, category, description, imageUrl
+ExerciseEquipment
+exerciseId, equipmentId, required/optional
+SocietyEquipment
+societyId, equipmentId, label, quantity, status, locationLabel, lastServicedAt
+ExerciseAlternative
+sourceExerciseId, alternativeExerciseId, similarityScore, notes
+MaintenanceIssue
+societyId, societyEquipmentId, reportedBy, title, description, severity, status, photoPath optional, createdAt, resolvedAt
+WorkoutPlan
+userId, title, createdByType(user/agent/system), target, plannedDurationMin, createdAt, status
+WorkoutPlanItem
+planId, exerciseId, orderIndex, targetSets, targetRepsText, suggestedWeight optional, restSeconds, rationale optional
+WorkoutSession
+userId, planId optional, startedAt, endedAt, durationMin, notes, perceivedEffort optional
+WorkoutSet
+sessionId, exerciseId, setNumber, reps optional, weightKg optional, durationSec optional, rpe optional, completedAt
+TrainingReadiness
+userId, muscleGroupId, trainingLoadScore, readinessBand, lastTrainedAt, computedAt, explanation
+FormAnalysis
+userId, exerciseId, capturedAt, analysisType=photo, resultBand, confidence, summary, retainedImagePath nullable
+FormMetric
+formAnalysisId, metricName, measuredValue, unit, targetRangeText, status, confidence, cue
+CommunityEvent
+societyId nullable, organizerUserId, title, description, category, startsAt, endsAt, latitude, longitude, venueLabel, capacity, externalUrl optional, status
+EventParticipant
+eventId, userId, joinedAt, status
+ExternalEventCache
+provider, providerEventId, title, category, startsAt, latitude, longitude, venueLabel, sourceUrl, rawHash, fetchedAt, expiresAt
+AgentConversation
+userId, title, createdAt, updatedAt
+AgentMessage
+conversationId, role, content, createdAt
+AgentAction
+conversationId, userId, toolName, requestSummary, resultSummary, status, createdAt, durationMs
+Notification
+userId, type, title, body, readAt nullable, createdAt
+Tenant rule: every society-specific query must enforce `societyId` on the server. Never trust a society ID sent by the client if the authenticated membership can determine it. Residents must not be able to read another resident’s private workout/form records.
+8. Backend endpoints and services
+Endpoint/service
+Responsibilities
+ProfileEndpoint
+getMe, completeOnboarding, updatePreferences, getSummary
+SocietyEndpoint
+joinByInviteCode, getCurrentSociety, getMembers (admin), updateMemberRole/status (admin)
+ExerciseEndpoint
+list/filter exercises, get exercise details, get eligible alternatives based on equipment
+EquipmentEndpoint
+list society equipment, get item, add/update item (admin), update status (admin)
+MaintenanceEndpoint
+report issue, list issues, update status (admin), stream maintenance updates
+WorkoutEndpoint
+generate personalized plan, save/accept plan, start session, log/update/delete set, finish session, history, session detail
+ReadinessEndpoint
+get current readiness, recompute from workout history, get historical trend
+FormEndpoint
+create analysis record from derived pose metrics, get history, get analysis detail; direct photo upload only if user opted to retain images
+EventEndpoint
+nearby external + community event search, create community event, join/leave event, event detail, list joined events
+AgentEndpoint
+send message, stream response if useful, execute bounded tool calls, list conversations/actions
+DashboardEndpoint
+one compact aggregated call for home cards so the Flutter home screen does not fire many serial requests
+AdminEndpoint
+society dashboard stats and lightweight analytics
+9. Authentication and onboarding
+Use Serverpod’s current authentication module. Email/password must work first. Add Google sign-in only after the baseline flow is stable.
+Required onboarding flow:
+• 1. Welcome / value proposition.
+• 2. Sign up or sign in.
+• 3. Join a society via invite code OR create a demo society path for hackathon testing.
+• 4. Create profile: display name, training experience (beginner/intermediate/advanced), fitness focus (strength/endurance/mobility/general fitness/consistency), preferred workout duration.
+• 5. Optional equipment/preferences setup.
+• 6. Land on Home with real data tied to that authenticated user.
+Do not collect unnecessary sensitive body information. Do not make appearance, weight-loss, or body-comparison features central to the product.
+10. Workout personalization engine
+Do not delegate workout generation entirely to the LLM. Build deterministic constraints first, then allow the agent to orchestrate and explain the result.
+10.1 Hard constraints
+• Only select active exercises the user can reasonably perform with currently available required equipment.
+• Respect the requested time budget and session focus.
+• Respect user experience level.
+• Avoid immediately re-targeting a muscle group with very high recent training load unless the user deliberately overrides it.
+• Do not include an exercise marked incompatible/unavailable because of equipment status.
+• Keep exercise order sensible: warm-up/preparation before demanding compounds; accessories later; cooldown/flexibility optional.
+• Keep plan size realistic for the selected duration.
+10.2 Soft personalization
+• Historical exercise frequency and recent volume.
+• User preferences and exercises repeatedly skipped/replaced.
+• Form-check history: if an exercise repeatedly receives weak technique cues, prefer a simpler variation or include a technique note rather than silently increasing difficulty.
+• Variety without random churn: avoid repeating the exact session too often while preserving useful progression.
+• Available equipment in the user’s society gym.
+• Goal and preferred session duration.
+Return a structured `WorkoutPlan` plus human-readable rationales. Rationales must be short and based on actual app data, e.g., “Barbell bench is under maintenance, so dumbbell press was selected.”
+11. Workout session mode (must-have)
+Build a polished “Today / Workout” flow where the user can execute the generated plan. This is not live rep counting; the user manually confirms/logs sets.
+• Show one exercise at a time with set targets, previous-session reference, rest timer, instructions, and alternative button.
+• Allow manual logging of reps/weight/duration/RPE-like effort.
+• Allow quick add/remove set.
+• Allow exercise replacement if equipment becomes unavailable.
+• Persist each completed set to the backend, not only at the end of the workout.
+• On completion, show a concise summary: duration, sets, exercises, volume where applicable, and readiness/training-load update.
+• Never implement camera-based automatic rep counting in the MVP.
+12. Photo-based AI/CV Form Coach (centerpiece)
+The MVP must analyze a still photo, not live rep counting. This keeps scope achievable while still demonstrating computer vision.
+MVP behavior
+User selects an exercise and a checkpoint/pose, the app guides camera positioning, ML Kit detects 33 pose landmarks on-device, Flutter computes exercise-specific joint/line metrics, the app shows technique cues plus analysis confidence, and only derived metrics are sent to Serverpod for history unless the user explicitly chooses to retain the image.
+Start with four static checkpoints only:
+• Squat - bottom-position check.
+• Push-up - bottom-position/body-line check.
+• Plank - body-line/alignment check.
+• Overhead press - lockout/alignment checkpoint OR biceps curl elbow-angle checkpoint; choose whichever is more reliable during implementation.
+For each supported checkpoint, define deterministic metrics using detected landmarks. Examples include knee angle, hip angle, torso inclination, shoulder-hip-ankle line deviation, left/right symmetry, elbow angle, and landmark confidence. Use thresholds as technique cues, not medical diagnoses.
+UI states must include:
+• No person detected.
+• Important landmarks out of frame.
+• Low confidence / retake photo.
+• Analysis complete.
+• Checks passed / checks needing attention.
+• History comparison.
+Do not output an unsafe binary promise such as “your form is safe” or “you will not get injured.” Use language such as “technique cue,” “alignment check,” and “confidence.”
+13. Training readiness / load
+Retain the useful concept from the existing GymOS heatmap but remove false precision. Build a derived readiness system from recent workouts, exercise muscle contribution, set volume, effort, and time since last training.
+Recommended display bands: READY / MODERATE LOAD / HIGH RECENT LOAD. Optionally show a 0-100 internal score, but the primary user-facing UI should be a band plus explanation rather than pretending to measure biological recovery exactly.
+Example explanation: “Chest has high recent training load because you trained pressing movements yesterday. Today’s plan prioritizes back and legs.”
+14. Equipment + maintenance
+• Member view: equipment name, availability status, location label, relevant exercises, last serviced date when appropriate.
+• Admin view: add/edit equipment, quantity, status, location, service date.
+• Member reporting: issue title, description, severity suggestion, optional photo.
+• Admin workflow: OPEN → IN PROGRESS → RESOLVED; resolving an equipment issue can restore availability.
+• Workout planner/agent must react to unavailable equipment and propose valid alternatives.
+• Use Serverpod streaming so an equipment/maintenance status change can update connected clients without manual refresh.
+Optional after all core flows work: generate a QR code per equipment item and allow scanning it to open the equipment page/report issue screen.
+15. Events + community map
+Create a unified Discover screen containing both external events and GymOS community events.
+15.1 External events source
+Use the official AllEvents developer API. Fetch through the Serverpod backend, never directly from Flutter when that would expose an API key. Search by location/city/coordinates and relevant fitness categories/keywords (running, marathon, cycling, yoga, fitness, sports, calisthenics, etc.). Normalize provider data into `ExternalEventCache`.
+Cache external events with an expiry to reduce API usage. Use a scheduled/recurring Serverpod job to refresh popular/nearby queries where helpful. If the provider is temporarily unavailable, show clearly labeled cached results rather than silently fabricating events.
+15.2 Community events
+• Admins (and optionally trusted members) can create a GymOS event: title, category, start/end time, venue label, coordinates, capacity, description.
+• Members can join/leave.
+• Show participant count and availability.
+• Community-created events must continue to function even if the external provider is unavailable.
+15.3 Map behavior
+• Use Google Maps for Flutter.
+• Ask for location permission only when nearby discovery needs it; allow city/manual browsing if permission is denied.
+• Place distinct markers for external vs GymOS events.
+• Tapping a marker opens a bottom sheet/card with title, date/time, distance if available, venue, source/community label, and CTA.
+• External CTA opens the original registration/source URL using `url_launcher`.
+• Community CTA joins the event inside GymOS.
+• Include an About/Legal section appropriate for Google Maps attribution requirements.
+16. Agentic GymOS Coach
+The coach must not be a generic chat box that forwards text to an LLM. Implement it as a Serverpod-hosted tool-using agent with bounded function calls and structured application context.
+Use Groq local function/tool calling on the server, with `openai/gpt-oss-120b` as the default agent model. The Flutter client sends the user message to `AgentEndpoint`; the Serverpod backend provides the allowed tool declarations; Groq returns structured tool-call requests; Serverpod executes those tools; tool results are returned to Groq; and Groq generates the final user-facing response. Keep the model ID configurable so a faster/lower-cost Groq model can be substituted without UI changes. Never expose the Groq API key to Flutter.
+Required agent tools:
+Tool
+What it returns/does
+get_user_profile
+Training experience, goal, preferences, society.
+get_recent_workouts
+Recent sessions and set summaries.
+get_training_readiness
+Recent load/readiness by muscle group.
+get_available_equipment
+Current society equipment and maintenance status.
+search_exercises
+Eligible exercise lookup by muscle/type/difficulty/equipment.
+get_exercise_alternatives
+Substitutions for unavailable or undesired exercises.
+get_form_history
+Recent technique/form-check metrics and cues for a selected exercise.
+get_progress_summary
+Consistency and performance trends.
+search_events
+Nearby cached/live events plus community events.
+create_workout_draft
+Generate a structured plan using the deterministic planner.
+replace_workout_exercise
+Replace an exercise in a draft/session with an eligible alternative after user intent is clear.
+explain_recommendation
+Return the data-backed reason for a recommendation.
+Agent rules:
+• Maximum bounded tool-call loop (e.g., 6-8 calls per user turn). Prevent infinite self-calling.
+• Read tools may run automatically. Any destructive write must require explicit user intent. Creating a draft is non-destructive; deleting history or changing admin data is not.
+• Log every tool execution to `AgentAction` with safe summaries, status, and duration.
+• Never invent workout history, equipment state, event availability, or form results. If data is absent, say so.
+• Keep health/fitness responses general and non-diagnostic. If a user reports pain or an injury, do not diagnose; recommend stopping the painful movement and seeking qualified guidance.
+• Do not expose internal chain-of-thought. Explain recommendations using concise data-backed reasons.
+• If Groq is unavailable, the core app must still work. The agent should show a clear temporary-unavailable state rather than blocking workouts.
+Example high-value agent flow:
+User: “What should I train today? I have 40 minutes.”Agent → get_recent_workouts      → get_training_readiness      → get_available_equipment      → create_workout_draft      → final response with short reasons + “Start workout” CTA
+17. External API integration rules
+Integration
+Directive
+Groq API
+Source: GroqCloud / GroqDocs. Use local function/tool calling through the Serverpod backend. Default model: `openai/gpt-oss-120b`; keep the model configurable. Backend only. Store `GROQ_API_KEY` in Serverpod password/secret management. Official docs: https://console.groq.com/docs/tool-use/local-tool-calling
+AllEvents API
+Source: https://developer.allevents.in/ . Backend only for authenticated key use. Normalize and cache results. Preserve source URL/provider attribution.
+Google Maps Platform
+Source: official Google Maps for Flutter package. Client map rendering with platform-appropriate restricted API key. Keep server-only keys separate if later using server APIs.
+Google ML Kit Pose Detection
+Underlying on-device pose detection for form checks. 33 landmarks. Do not upload images to an LLM to infer biomechanics for the MVP.
+Serverpod Cloud
+Use for deployment, production Postgres, secrets, storage, and hosted app/server when ready.
+Secrets policy:
+• No API key in Git history.
+• No Groq or AllEvents secret in Flutter source.
+• Use Serverpod local password configuration for development and Serverpod Cloud secret/password commands for production.
+• Google Maps client keys must be restricted by Android package/signing certificate, iOS bundle ID, or web referrer as appropriate.
+• Commit only example placeholders and setup documentation.
+18. Privacy, security, and data handling
+• Enforce authorization server-side for every user-owned and society-owned record.
+• Admins are scoped to their own society; they do not gain access to private form photos or agent conversations unless the product explicitly requires and documents it.
+• For form analysis, process the image on-device whenever possible. By default, upload/store derived landmarks/metrics and feedback, not the original body image.
+• If image retention is offered, make it opt-in, store privately, and allow deletion.
+• Validate file type/size before any upload.
+• Rate-limit/guard expensive LLM and external API calls logically at the application layer.
+• Use server-side timeouts and graceful errors for external providers.
+• Sanitize free text where it may be shown to other users (community event descriptions, maintenance reports).
+19. UI/UX direction - make it hackathon-demo quality
+The app must not look like a generic admin dashboard. Design a cohesive premium fitness product with strong hierarchy, spacious cards, clear status chips, clean charts, tasteful motion, and a consistent icon system.
+Recommended navigation for resident/member role:
+Bottom navigation1. Home2. Workout3. Form4. Discover5. ProfileFloating / persistent secondary action: “Ask GymOS”
+Admin tools can live behind a role-aware Admin entry from Home/Profile rather than occupying resident navigation.
+Visual direction:
+• Default dark theme with near-black/charcoal surfaces and one energetic accent; provide accessible contrast and avoid neon overload.
+• Use Material 3 foundations but customize card shapes, spacing, typography, status chips, loading skeletons, and navigation so it does not look like a starter template.
+• Use one shared design-system file for spacing, radius, typography, semantic colors, and component states.
+• Every network screen needs loading, empty, error, retry, and success states.
+• Prefer bottom sheets and progressive disclosure over dense forms.
+• Keep charts limited to the metric the user can act on.
+• Use subtle animations for transitions/progress, not distracting showcase animations.
+20. Required screens
+Screen
+Minimum content
+Auth
+Welcome, Sign in, Sign up, forgot/reset if time.
+Onboarding
+Join/create society demo path; profile/preferences.
+Home
+Greeting, today’s plan CTA, readiness summary, equipment notices, recent progress, nearby event teaser, Ask GymOS.
+Workout planner
+Duration/focus preferences, generated plan, rationale, swap exercise, save/start.
+Workout session
+Exercise card, set logging, rest timer, alternatives, finish summary.
+Workout history/detail
+Past sessions, set details, simple progression comparison.
+Form coach
+Exercise/checkpoint selector, camera guidance, capture, result, history.
+Readiness/body map
+Actionable recent-load/readiness view, not medical certainty.
+Progress
+Consistency, frequency, selected lift/exercise trends, form-check trend.
+Equipment
+Availability list/details, related exercises, report issue.
+Maintenance admin
+Queue/list, detail, status update, photo if present.
+Discover events
+Map/list toggle, filters, distance/city, external/community labels.
+Event detail
+Venue/time/map, join or external registration link.
+Create community event
+Admin/trusted member form.
+Agent
+Conversation UI with suggestion chips and deep links into app actions.
+Profile/settings
+Preferences, society, privacy, legal/about, sign out.
+Admin dashboard
+Member/equipment/maintenance/event summary.
+21. Serverpod capabilities that must be visible in the product
+Use Serverpod features because they naturally improve GymOS, not as checkbox demos:
+• Auth: sign-in/session/role-aware backend authorization.
+• ORM + migrations: all persistent product data.
+• Type-safe generated client: all first-party Flutter ↔ backend calls.
+• Streaming: maintenance/equipment state changes; optionally community-event participant count or agent streamed response if stable.
+• File storage: optional maintenance photos and opted-in retained form photos. Private by default for user images.
+• Scheduling/future/recurring tasks: event-cache refresh and safe housekeeping where useful.
+• Logging: backend errors, external API failures, agent tool failures. Do not log secrets or sensitive image data.
+• Serverpod Cloud: final backend deployment and secure secrets.
+22. Seed data and demo mode
+Create realistic seed data so judges can experience the product quickly, but never disguise seed data as live external data.
+• One demo society with an invite code documented in README.
+• Admin demo account and resident demo account if permitted by the submission format.
+• 30-50 quality exercises across common movement patterns.
+• 10-15 equipment types and a realistic society inventory with at least one item under maintenance.
+• Several historical workouts for the demo resident so progress/readiness screens are meaningful.
+• 2-3 community events with real-looking but clearly demo labels.
+• External events from AllEvents must be marked with their provider/source.
+23. Testing and quality gates
+Do not leave testing to the final day. At minimum, implement tests around the failure-prone product rules.
+23.1 Server tests
+• User from Society A cannot access Society B data.
+• Resident cannot call admin-only mutations.
+• Workout generator respects time/equipment constraints.
+• Unavailable equipment removes or replaces incompatible exercises.
+• Workout session persists sets and completion summary.
+• Readiness score changes after a logged workout and decays/changes over time as intended.
+• Event provider adapter normalizes results and uses cache when valid.
+• Agent tool registry only exposes allowed tools and logs tool actions.
+• External API failure produces a controlled error/fallback rather than a crash.
+23.2 Flutter tests
+• Auth routing/redirect behavior.
+• Workout set-entry interactions.
+• Form-coach low-confidence/retake state.
+• Event map/list filtering state.
+• Loading/error/empty states on critical screens.
+Before every milestone, run formatting, analysis, tests, and a release-like build. Fix warnings that indicate real problems. Do not disable lint rules just to make the console quiet.
+24. Implementation order - follow this unless blocked
+Phase
+Deliverable
+Phase 0 - Audit
+Clone/read the existing repo and documentation. List features worth preserving and data that can seed the new project. Do not code the visualizer.
+Phase 1 - Scaffold
+Create Serverpod workspace, Flutter architecture, theme, routing, config/secrets placeholders, CI-friendly commands.
+Phase 2 - Auth + DB
+Serverpod auth, profile, society membership, core models/migrations, seed script.
+Phase 3 - Core gym product
+Exercises, equipment, maintenance, workout history/logging, basic dashboard.
+Phase 4 - Personalized planner
+Constraint-based planner, alternatives, readiness calculation, plan/session flow.
+Phase 5 - Agent
+Groq local function calling, Serverpod tool registry/orchestration loop, action logs, plan/explain/replacement flows, bounded retries, and graceful 429/unavailable handling.
+Phase 6 - Form coach
+Photo capture, on-device pose landmarks, four checkpoint analyzers, history.
+Phase 7 - Events
+AllEvents backend adapter/cache, Google Map, community events/joining.
+Phase 8 - Realtime + polish
+Streaming maintenance changes, responsive polish, animations, empty/error states, accessibility.
+Phase 9 - Deploy + demo
+Serverpod Cloud, secrets, production migration, test accounts/data, README, demo script, screenshots/video.
+Critical rule: at the end of each phase, the app should still compile and the already-built flow should remain demoable. Commit frequently with meaningful messages.
+25. MVP definition of done
+☐ User can sign up/sign in and has a persistent Serverpod-backed profile.
+☐ User is scoped to a society and sees real society equipment state.
+☐ User can generate a personalized workout based on time + equipment + history.
+☐ User can start a workout, log sets, finish it, and reopen the history.
+☐ Readiness/load view updates from actual workout history.
+☐ Agent can answer “What should I train today?” by calling real GymOS tools and can explain/replace an unavailable exercise.
+☐ Form coach successfully analyzes a supported photo checkpoint and saves derived result history.
+☐ Equipment issue can be reported and admin can resolve it.
+☐ Discover shows live/cached external events from the configured provider and community events on a real map.
+☐ User can join a GymOS community event.
+☐ Critical data persists after app restart.
+☐ App has loading/error/empty states and no obviously dead buttons.
+☐ Backend is deployable on Serverpod Cloud and secrets are not committed.
+☐ No separate DAA visualizer exists in the final product navigation.
+☐ No live rep counting exists in the MVP.
+26. Stretch features - only after MVP passes
+• Google sign-in.
+• Equipment QR scanning/report shortcut.
+• Push/local notifications for joined events or resolved maintenance.
+• Short video form-analysis experiments (still no automatic rep counting unless the core app is already excellent).
+• Richer admin analytics.
+• Agent-generated weekly summary based on structured data.
+• Calendar integration or export for joined events.
+• Multi-gym membership.
+27. Do NOT do these things
+• Do not rebuild the DAA visualizer.
+• Do not preserve Greedy/Knapsack/BFS/DFS/Topo solely to claim algorithms.
+• Do not add live automatic rep counting now.
+• Do not turn the agent into a plain LLM wrapper.
+• Do not expose Groq/AllEvents secrets in Flutter.
+• Do not use fake hardcoded “nearby events” as if live.
+• Do not call a static photo analysis a medical or injury-risk assessment.
+• Do not collect unnecessary sensitive personal/body data.
+• Do not attempt nutrition/calorie/body-shape features during this hackathon unless explicitly requested later.
+• Do not create twenty half-working features instead of the required complete user journey.
+• Do not rewrite everything in a single massive file.
+• Do not bypass Serverpod with Firebase/Supabase as the primary backend; this is a Serverpod hackathon.
+28. The judge demo flow the architecture must support
+Build toward this exact narrative because it shows usefulness and the Serverpod/AI stack naturally:
+• 1. Sign in as a resident.
+• 2. Home loads personal history, current equipment notices, and readiness.
+• 3. Ask GymOS: “I have 40 minutes. What should I train today?”
+• 4. Agent calls user history/readiness/equipment tools and creates a workout draft.
+• 5. Show that one planned machine is unavailable/under maintenance and use the agent or alternative action to replace it.
+• 6. Start the workout and manually log a couple of sets.
+• 7. Open Form Coach for a supported exercise and analyze a photo checkpoint.
+• 8. Save the form-analysis result; show it in history/progress.
+• 9. Finish workout; home/readiness/progress updates from persisted data.
+• 10. Open Discover; show real external event results + a community event on the map.
+• 11. Join the community event.
+• 12. Optionally switch to admin and resolve the equipment issue; resident receives real-time status update.
+29. README and submission readiness
+Maintain a professional README while building. It should contain:
+• One-paragraph problem and solution.
+• Architecture diagram.
+• Serverpod features used and why they matter.
+• AI agent tool architecture.
+• Form-coach pipeline.
+• External API providers.
+• Local setup using the already-installed Flutter/Serverpod toolchain.
+• Secret/environment variable names without values.
+• Database migration/seed steps.
+• Deployment steps.
+• Demo accounts/invite code if appropriate.
+• Known limitations: still-photo checkpoints, readiness estimate, provider availability.
+• Explicit statement that live rep counting is not part of the MVP.
+30. Coding standards for Astra
+• Prefer small, testable services and widgets with descriptive names.
+• Keep business logic on the server when it determines shared/persistent behavior; keep camera/pose processing on-device when it protects privacy and reduces latency.
+• Use repository/service abstractions where they reduce coupling, but avoid ceremonial architecture with dozens of empty layers.
+• Use Serverpod-generated models/client types rather than duplicating DTOs manually.
+• Handle null/error states deliberately.
+• Add comments only where the reasoning is not obvious; do not narrate every line.
+• No dead code, commented-out old implementations, or unused packages in final branch.
+• Keep external-provider adapters behind interfaces so AllEvents/Groq can be swapped without touching UI code.
+• Use UTC timestamps in storage and convert to local time in presentation.
+• Add indexes for common history, society, status, and time-based queries.
+• Protect write operations with authentication/authorization checks on the server, not just hidden UI buttons.
+31. Final execution instruction
+ASTRA - EXECUTE, DO NOT ONLY PLAN
+Begin by auditing the existing repository, then create the Serverpod rewrite following the phases above. Maintain a continuously runnable app. Make pragmatic decisions without repeatedly asking for confirmation. Ask the developer only when blocked by a required credential, an irreversible product choice, or missing information that cannot safely be inferred. Prioritize a complete, polished, judge-demoable vertical slice over breadth.
+END ASTRA MASTER PROMPT
+
+Verified implementation references (for the developer and Astra)
+These sources were checked when preparing this build prompt. Astra should prefer official/current documentation and must not invent undocumented API endpoints.
+Hackathon event/rubric: Build Something Real: The Serverpod Hackathon (Luma / BuilderBase event information) - https://luma.com/builde-mked
+Serverpod quickstart: Serverpod 4 Quickstart - Flutter requirement and CLI workflow - https://docs.serverpod.dev/quickstart
+Serverpod architecture: How Serverpod works - type-safe client/backend, database/auth/storage/streaming/scheduling/logging - https://docs.serverpod.dev/how-it-works
+Serverpod authentication: Authentication setup / serverpod_auth_idp - https://docs.serverpod.dev/concepts/authentication/setup
+Serverpod models: Serverpod model files and `.spy.yaml` - https://docs.serverpod.dev/concepts/data-and-the-database/models
+Serverpod streaming: Streaming methods / WebSocket management - https://docs.serverpod.dev/concepts/endpoints-and-apis/streaming
+Serverpod file uploads: Direct upload descriptions and storage model - https://docs.serverpod.dev/next/concepts/endpoints-and-apis/file-uploads
+Serverpod scheduling: Future calls / recurring work - https://docs.serverpod.dev/concepts/scheduling/future-calls
+Serverpod Cloud: Recommended Serverpod hosting/deployment - https://docs.serverpod.dev/deployments/deploy-to-serverpod-cloud
+Groq tools: Groq local tool calling - https://console.groq.com/docs/tool-use/local-tool-calling
+ML Kit pose: Google ML Kit Pose Detection - 33 landmarks - https://developers.google.com/ml-kit/vision/pose-detection/android
+Google Maps Flutter: Official Google Maps for Flutter package - https://developers.google.com/maps/flutter-package/overview
+AllEvents: AllEvents Developer Portal - event discovery API - https://developer.allevents.in/
+Existing GymOS: Original project repository supplied by the developer - https://github.com/kammarohan55-crypto/daa.git
+Note on API availability
+External providers, quotas, model names, and package versions can change. At implementation time, Astra must verify the current official docs and compatible package versions. The architecture must degrade gracefully if a third-party provider is unavailable.
+Appendix A - Suggested secret/configuration names
+GROQ_API_KEY=...ALLEVENTS_API_KEY=...GOOGLE_MAPS_API_KEY=...   # client key must be platform-restrictedAPP_ENV=development|productionEXTERNAL_EVENTS_CACHE_TTL_MINUTES=...
+Use the Serverpod-supported password/secret mechanism in local and cloud environments. Never commit real values.
+Appendix B - Hackathon priority snapshot
+Priority
+Scope
+P0 - Must work
+Auth, database, workouts/logging, equipment state, agent tool call, form photo analysis, events/map, deployment.
+P1 - Strong polish
+Progress/readiness, maintenance streaming, event joining, admin workflow, responsive UI, robust error states.
+P2 - Only if time
+QR equipment scan, social auth, local/push notifications, richer analytics.
+Deferred
+Live rep counting, broad video biomechanics, nutrition, large social network, dozens of exercise form models.

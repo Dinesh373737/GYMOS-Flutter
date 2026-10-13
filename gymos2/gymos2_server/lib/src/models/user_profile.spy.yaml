@@ -1,0 +1,17 @@
+class: UserProfile
+table: user_profile
+fields:
+  authUserId: String
+  displayName: String
+  role: String
+  societyId: int, relation(parent=society)
+  experienceLevel: String
+  primaryGoal: String
+  preferredWorkoutDuration: int
+  onboardingComplete: bool
+  createdAt: DateTime
+  updatedAt: DateTime
+indexes:
+  user_profile_unique:
+    fields: authUserId
+    unique: true

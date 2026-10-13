@@ -1,0 +1,19 @@
+class: CommunityEvent
+table: community_event
+fields:
+  societyId: int, relation(parent=society)
+  organizerUserId: int, relation(parent=user_profile)
+  title: String
+  description: String
+  category: String
+  startsAt: DateTime
+  endsAt: DateTime
+  latitude: double
+  longitude: double
+  venueLabel: String
+  capacity: int
+  status: String
+  isDemo: bool
+indexes:
+  community_event_lookup:
+    fields: societyId

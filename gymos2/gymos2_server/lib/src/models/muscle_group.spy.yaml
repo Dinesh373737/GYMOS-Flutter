@@ -1,0 +1,9 @@
+class: MuscleGroup
+table: muscle_group
+fields:
+  name: String
+  bodyArea: String
+indexes:
+  muscle_group_unique:
+    fields: name
+    unique: true

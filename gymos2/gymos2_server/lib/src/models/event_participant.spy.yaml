@@ -1,0 +1,11 @@
+class: EventParticipant
+table: event_participant
+fields:
+  eventId: int, relation(parent=community_event)
+  userId: int, relation(parent=user_profile)
+  joinedAt: DateTime
+  status: String
+indexes:
+  event_participant_unique:
+    fields: eventId, userId
+    unique: true

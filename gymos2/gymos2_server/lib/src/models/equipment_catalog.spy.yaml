@@ -1,0 +1,10 @@
+class: EquipmentCatalog
+table: equipment_catalog
+fields:
+  name: String
+  category: String
+  description: String
+indexes:
+  equipment_catalog_unique:
+    fields: name
+    unique: true

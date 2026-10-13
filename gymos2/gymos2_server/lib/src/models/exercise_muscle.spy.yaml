@@ -1,0 +1,10 @@
+class: ExerciseMuscle
+table: exercise_muscle
+fields:
+  exerciseId: int, relation(parent=exercise)
+  muscleGroupId: int, relation(parent=muscle_group)
+  contribution: double
+indexes:
+  exercise_muscle_unique:
+    fields: exerciseId, muscleGroupId
+    unique: true

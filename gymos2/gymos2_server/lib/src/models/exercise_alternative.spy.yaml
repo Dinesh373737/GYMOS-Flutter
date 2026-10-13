@@ -1,0 +1,11 @@
+class: ExerciseAlternative
+table: exercise_alternative
+fields:
+  sourceExerciseId: int, relation(parent=exercise)
+  alternativeExerciseId: int, relation(parent=exercise)
+  similarityScore: double
+  notes: String
+indexes:
+  exercise_alternative_unique:
+    fields: sourceExerciseId, alternativeExerciseId
+    unique: true

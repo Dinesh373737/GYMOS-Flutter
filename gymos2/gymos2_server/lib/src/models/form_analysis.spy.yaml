@@ -1,0 +1,15 @@
+class: FormAnalysis
+table: form_analysis
+fields:
+  userId: int, relation(parent=user_profile)
+  exerciseId: int, relation(parent=exercise)
+  checkpoint: String
+  capturedAt: DateTime
+  analysisType: String
+  resultBand: String
+  confidence: double
+  summary: String
+  retainedImagePath: String?
+indexes:
+  form_analysis_lookup:
+    fields: userId

@@ -1,0 +1,10 @@
+class: AgentMessage
+table: agent_message
+fields:
+  conversationId: int, relation(parent=agent_conversation)
+  role: String
+  content: String
+  createdAt: DateTime
+indexes:
+  agent_message_lookup:
+    fields: conversationId

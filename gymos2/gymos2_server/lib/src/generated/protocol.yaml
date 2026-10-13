@@ -1,0 +1,66 @@
+emailIdp:
+  - login:
+  - startRegistration:
+  - verifyRegistrationCode:
+  - finishRegistration:
+  - startPasswordReset:
+  - verifyPasswordResetCode:
+  - finishPasswordReset:
+  - hasAccount:
+jwtRefresh:
+  - refreshAccessToken:
+admin:
+  - stats:
+  - members:
+  - updateMember:
+agent:
+  - sendMessage:
+  - conversations:
+  - messages:
+dashboard:
+  - getSummary:
+equipment:
+  - list:
+  - catalog:
+  - save:
+  - watch:
+  - report:
+  - issues:
+  - updateIssue:
+event:
+  - discover:
+  - create:
+  - participantCount:
+  - join:
+exercise:
+  - list:
+form:
+  - save:
+  - history:
+  - detail:
+notification:
+  - list:
+  - unreadCount:
+  - markAllRead:
+profile:
+  - getMe:
+  - completeOnboarding:
+  - updatePreferences:
+  - getSociety:
+  - getMembers:
+workout:
+  - generate:
+  - getPlan:
+  - plans:
+  - alternatives:
+  - replace:
+  - start:
+  - logSet:
+  - deleteSet:
+  - finish:
+  - history:
+  - detail:
+  - readiness:
+  - loggedExercises:
+  - exerciseTrend:
+  - readinessTrend:

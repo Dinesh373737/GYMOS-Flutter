@@ -1,0 +1,10 @@
+class: DiscoverData
+fields:
+  community: List<CommunityEvent>
+  externalEvents: List<ExternalEventCache>
+  joinedEventIds: List<int>
+  providerStatus: String
+  # live | cached | stale | unavailable | unsupported | unconfigured
+  providerState: String, default='unconfigured'
+  supportedCities: List<String>?
+  participantCounts: Map<int, int>?

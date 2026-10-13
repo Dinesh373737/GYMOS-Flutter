@@ -1,0 +1,4 @@
+class: FormResult
+fields:
+  analysis: FormAnalysis
+  metrics: List<FormMetric>

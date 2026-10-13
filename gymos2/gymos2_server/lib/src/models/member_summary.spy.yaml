@@ -1,0 +1,8 @@
+class: MemberSummary
+fields:
+  profileId: int
+  displayName: String
+  role: String
+  isActive: bool
+  joinedAt: DateTime
+  workoutsLast30Days: int

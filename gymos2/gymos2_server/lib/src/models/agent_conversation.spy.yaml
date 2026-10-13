@@ -1,0 +1,10 @@
+class: AgentConversation
+table: agent_conversation
+fields:
+  userId: int, relation(parent=user_profile)
+  title: String
+  createdAt: DateTime
+  updatedAt: DateTime
+indexes:
+  agent_conversation_lookup:
+    fields: userId

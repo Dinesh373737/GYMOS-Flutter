@@ -1,0 +1,15 @@
+class: TrainingReadiness
+table: training_readiness
+fields:
+  userId: int, relation(parent=user_profile)
+  muscleGroupId: int, relation(parent=muscle_group)
+  muscleName: String
+  trainingLoadScore: double
+  readinessBand: String
+  lastTrainedAt: DateTime?
+  computedAt: DateTime
+  explanation: String
+indexes:
+  training_readiness_unique:
+    fields: userId, muscleGroupId
+    unique: true

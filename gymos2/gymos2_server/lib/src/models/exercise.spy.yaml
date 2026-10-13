@@ -1,0 +1,17 @@
+class: Exercise
+table: exercise
+fields:
+  name: String
+  slug: String
+  instructions: String
+  difficulty: String
+  movementPattern: String
+  exerciseType: String
+  defaultDurationMin: int
+  isActive: bool
+indexes:
+  exercise_unique:
+    fields: slug
+    unique: true
+  exercise_lookup:
+    fields: name

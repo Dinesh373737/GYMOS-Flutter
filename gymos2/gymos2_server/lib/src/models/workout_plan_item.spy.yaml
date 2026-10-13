@@ -1,0 +1,14 @@
+class: WorkoutPlanItem
+table: workout_plan_item
+fields:
+  planId: int, relation(parent=workout_plan)
+  exerciseId: int, relation(parent=exercise)
+  orderIndex: int
+  targetSets: int
+  targetRepsText: String
+  suggestedWeight: double?
+  restSeconds: int
+  rationale: String
+indexes:
+  workout_plan_item_lookup:
+    fields: planId

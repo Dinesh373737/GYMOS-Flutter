@@ -1,0 +1,14 @@
+class: FormMetric
+table: form_metric
+fields:
+  formAnalysisId: int, relation(parent=form_analysis)
+  metricName: String
+  measuredValue: double
+  unit: String
+  targetRangeText: String
+  status: String
+  confidence: double
+  cue: String
+indexes:
+  form_metric_lookup:
+    fields: formAnalysisId

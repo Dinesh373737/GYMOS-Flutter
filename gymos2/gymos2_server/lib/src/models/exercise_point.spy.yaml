@@ -1,0 +1,8 @@
+class: ExercisePoint
+fields:
+  sessionId: int
+  day: DateTime
+  topWeightKg: double
+  volumeKg: double
+  totalReps: int
+  sets: int

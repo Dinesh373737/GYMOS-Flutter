@@ -1,0 +1,16 @@
+class: MaintenanceIssue
+table: maintenance_issue
+fields:
+  societyId: int, relation(parent=society)
+  societyEquipmentId: int, relation(parent=society_equipment)
+  reportedBy: int, relation(parent=user_profile)
+  title: String
+  description: String
+  severity: String
+  status: String
+  photoPath: String?
+  createdAt: DateTime
+  resolvedAt: DateTime?
+indexes:
+  maintenance_issue_lookup:
+    fields: societyId

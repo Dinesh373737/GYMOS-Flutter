@@ -1,0 +1,20 @@
+class: AdminStats
+fields:
+  society: Society
+  memberCount: int
+  activeMembers: int
+  adminCount: int
+  equipmentTotal: int
+  equipmentAvailable: int
+  equipmentMaintenance: int
+  equipmentUnavailable: int
+  openIssues: int
+  inProgressIssues: int
+  resolvedIssues30d: int
+  highSeverityOpen: int
+  upcomingEvents: int
+  eventParticipants: int
+  workoutsThisWeek: int
+  activeTrainersThisWeek: int
+  # Society-wide completed sessions per day, oldest first (last 14 days).
+  dailyWorkouts: List<int>
