@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:serverpod_auth_idp_flutter/serverpod_auth_idp_flutter.dart';
 import '../../client.dart';
 import '../../app/theme.dart';
+import '../../core/server_settings.dart';
 import '../../core/widgets.dart';
 
 class AuthScreen extends StatelessWidget {
@@ -136,13 +137,17 @@ class AuthScreen extends StatelessWidget {
             client: client,
             onAuthenticated: () {},
             onError: (e) => ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
+              SnackBar(
                 content: Text(
-                  'Sign-in failed. Check your details and try again.',
+                  isConnectionError(e)
+                      ? 'Can’t reach the GymOS server at $activeServerUrl. Check that it is running and on the same Wi-Fi.'
+                      : 'Sign-in failed. Check your details and try again.',
                 ),
               ),
             ),
           ),
+          const SizedBox(height: 8),
+          const ServerAddressRow(),
           const SizedBox(height: 18),
           const Row(
             children: [

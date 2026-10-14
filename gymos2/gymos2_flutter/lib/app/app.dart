@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:serverpod_auth_idp_flutter/serverpod_auth_idp_flutter.dart';
 import '../client.dart';
 import '../core/providers.dart';
+import '../core/server_settings.dart';
 import '../core/widgets.dart';
 import '../features/admin/admin_screen.dart';
 import '../features/auth/auth_screen.dart';
@@ -53,12 +54,14 @@ Page<void> _fade(GoRouterState s, Widget child) => CustomTransitionPage<void>(
 
 class _GymAppState extends ConsumerState<GymApp> {
   late final GoRouter router;
+  // Held so dispose detaches from this client even after a server switch.
+  late final Listenable authChanges = client.auth.authInfoListenable;
   @override
   void initState() {
     super.initState();
     router = GoRouter(
       initialLocation: '/home',
-      refreshListenable: client.auth.authInfoListenable,
+      refreshListenable: authChanges,
       redirect: (c, s) =>
           authRedirect(client.auth.isAuthenticated, s.matchedLocation),
       routes: [
@@ -126,7 +129,7 @@ class _GymAppState extends ConsumerState<GymApp> {
         ),
       ],
     );
-    client.auth.authInfoListenable.addListener(clearUserState);
+    authChanges.addListener(clearUserState);
   }
 
   void clearUserState() {
@@ -151,7 +154,7 @@ class _GymAppState extends ConsumerState<GymApp> {
 
   @override
   void dispose() {
-    client.auth.authInfoListenable.removeListener(clearUserState);
+    authChanges.removeListener(clearUserState);
     router.dispose();
     super.dispose();
   }
@@ -213,10 +216,25 @@ class AppShell extends ConsumerWidget {
               EmptyCard(
                 icon: Icons.cloud_off,
                 title: 'Unable to load your profile',
-                message: errorText(e),
-                action: FilledButton(
-                  onPressed: () => ref.invalidate(profileProvider),
-                  child: const Text('Retry'),
+                message: isConnectionError(e) && serverAddressEditable
+                    ? 'Can’t reach the GymOS server at $activeServerUrl. Check that it is running and that this phone is on the same Wi-Fi.'
+                    : errorText(e),
+                action: Wrap(
+                  spacing: 10,
+                  runSpacing: 10,
+                  alignment: WrapAlignment.center,
+                  children: [
+                    FilledButton(
+                      onPressed: () => ref.invalidate(profileProvider),
+                      child: const Text('Retry'),
+                    ),
+                    if (serverAddressEditable)
+                      OutlinedButton.icon(
+                        onPressed: () => showServerSettings(context),
+                        icon: const Icon(Icons.dns_outlined),
+                        label: const Text('Server address'),
+                      ),
+                  ],
                 ),
               ),
             ],

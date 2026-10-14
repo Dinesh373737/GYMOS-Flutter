@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gymos2_client/gymos2_client.dart';
 import 'package:gymos2_flutter/app/app.dart';
+import 'package:gymos2_flutter/client.dart';
 import 'package:gymos2_flutter/core/providers.dart';
 import 'package:gymos2_flutter/features/admin/admin_screen.dart';
 import 'package:gymos2_flutter/features/events/discover_screen.dart';
@@ -38,6 +39,36 @@ AdminStats stats() => AdminStats(
 );
 
 void main() {
+  group('server address', () {
+    test('accepts bare hosts, host:port and full URLs', () {
+      expect(normalizeServerUrl('192.168.0.10'), 'http://192.168.0.10:8080/');
+      expect(
+        normalizeServerUrl(' 192.168.0.10:9000 '),
+        'http://192.168.0.10:9000/',
+      );
+      expect(
+        normalizeServerUrl('http://gym.local:8080/api'),
+        'http://gym.local:8080/',
+      );
+      expect(
+        normalizeServerUrl('https://api.example.com'),
+        'https://api.example.com/',
+      );
+    });
+    test('rejects unusable input', () {
+      expect(normalizeServerUrl(''), isNull);
+      expect(normalizeServerUrl('ftp://example.com'), isNull);
+      expect(normalizeServerUrl('http://'), isNull);
+    });
+    test('distinguishes unreachable servers from server errors', () {
+      expect(
+        isConnectionError(Exception('SocketException: Connection refused')),
+        isTrue,
+      );
+      expect(isConnectionError(GymException(message: 'Bad set')), isFalse);
+    });
+  });
+
   group('auth redirect', () {
     test('signed-out users are sent to sign in from any page', () {
       expect(authRedirect(false, '/home'), '/auth');

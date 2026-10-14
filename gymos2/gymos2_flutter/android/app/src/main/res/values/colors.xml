@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Matches GymTheme.bg so there is no light flash before Flutter draws. -->
+    <color name="gymos_background">#0A0D0B</color>
+</resources>

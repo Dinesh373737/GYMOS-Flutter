@@ -4,6 +4,20 @@ GymOS helps residents and small shared gyms plan around available equipment, rec
 
 This local development build has passing backend/database and Flutter tests, a live authenticated workout/event flow, live Groq tool-based draft creation, cached external fitness listings (allevents.in via the Parse.bot wrapper), an admin dashboard with member management, in-app notifications, progress trends, and a redesigned dark interface. Physical-device photo verification and cloud deployment remain incomplete. See [agent.md](agent.md) for current evidence and remaining work.
 
+## Install on an Android phone
+
+1. On the computer, double-click [`start-gymos-server.cmd`](start-gymos-server.cmd) (or run `dart run bin/main.dart --apply-migrations` in `gymos2/gymos2_server`) and keep that window open.
+2. On the phone, download and open [`releases/GymOS-2.0.0-android-arm64.apk`](releases/GymOS-2.0.0-android-arm64.apk) (almost all phones). For older 32-bit phones use [`releases/GymOS-2.0.0-android-armv7.apk`](releases/GymOS-2.0.0-android-armv7.apk). Allow "install unknown apps" for your browser or file manager when Android asks.
+3. Keep the phone on the same Wi-Fi as the computer and sign in.
+
+The APK is built to reach `http://192.168.0.123:8080/`, the development computer's address on its home Wi-Fi. If that address changes, or you use another computer, tap **Change** next to "Server" on the sign-in screen (also under Profile → Server address) and enter the computer's IP and port, for example `192.168.0.50:8080`. The app works only while the server is running and reachable; it does not work over mobile data until the backend is deployed. It is signed with a debug certificate for sideloading, not for the Play Store.
+
+To rebuild with a different default address, from `gymos2/gymos2_flutter`:
+
+```powershell
+flutter build apk --release --split-per-abi --dart-define=SERVER_URL=http://YOUR_COMPUTER_IP:8080/
+```
+
 ## Download the web app
 
 A ready-built release of the website is in [`releases/gymos-web.zip`](releases/gymos-web.zip). It needs the GymOS Serverpod backend running; `HOW-TO-RUN.txt` inside the zip explains both ways to serve it.
@@ -16,7 +30,8 @@ gymos2/
   gymos2_server/              Endpoints, services, models, migrations
   gymos2_client/              Generated typed client; do not edit manually
   gymos2_flutter/             Flutter app and on-device pose processing
-releases/gymos-web.zip       Built Flutter web release
+releases/                    Built web release zip and Android APKs
+start-gymos-server.cmd       Starts the backend on Windows
 requirements-reference.txt   Older extracted specification (see the .docx)
 agent.md                     Implementation and verification record
 ```
@@ -121,7 +136,7 @@ For a physical Android device, run this from `gymos2/gymos2_flutter/`, substitut
 flutter run --dart-define=SERVER_URL=http://YOUR_COMPUTER_IP:8080/
 ```
 
-Use a reachable HTTPS API for production. Android has camera/location permissions and uses Flutter's configured minimum SDK. Release signing still uses scaffold debug signing and needs production setup. The embedded map uses keyless OSM tiles on Android and Web; it needs no Google Maps SDK setup.
+Use a reachable HTTPS API for production. Android has camera/location permissions and uses Flutter's configured minimum SDK. Release builds allow cleartext HTTP so phones can reach a development server on the local network; use an HTTPS server and remove `usesCleartextTraffic` for production. Release signing still uses debug signing and needs production setup. The embedded map uses keyless OSM tiles on Android and Web; it needs no Google Maps SDK setup.
 
 ## Database and demo data
 

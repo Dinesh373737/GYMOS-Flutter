@@ -7,6 +7,7 @@ import 'package:serverpod_auth_idp_flutter/serverpod_auth_idp_flutter.dart'
     hide UserProfile;
 import '../../client.dart';
 import '../../core/providers.dart';
+import '../../core/server_settings.dart';
 import '../../core/widgets.dart';
 import '../../app/theme.dart';
 import '../notifications/notifications_sheet.dart';
@@ -318,6 +319,12 @@ class ProfileScreen extends ConsumerWidget {
                             label: 'Notifications',
                             onTap: () => showNotifications(context, ref),
                           ),
+                          if (serverAddressEditable)
+                            _LinkRow(
+                              icon: Icons.dns_outlined,
+                              label: 'Server address',
+                              onTap: () => showServerSettings(context),
+                            ),
                         ],
                       ),
                     ),
