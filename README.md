@@ -8,6 +8,8 @@ This local development build has passing backend/database and Flutter tests, a l
 
 Watch the [3:49 Android feature walkthrough](video/GymOS-2.0-mobile-walkthrough.mp4) for a caption-led tour of the main user and admin flows.
 
+Read the [text-only Word project description](docs/GymOS_2_Project_Description.docx) for a concise submission overview of the app, Flutter and Serverpod architecture, features, and verification status.
+
 ## Run your own copy (another computer)
 
 Anyone can run GymOS on their own computer and Wi-Fi. They only need [Flutter](https://docs.flutter.dev/get-started/install) (it includes Dart) and, for the AI coach, a free Groq API key.

@@ -4,6 +4,7 @@ Updated: 2026-10-14
 
 ## Submission check (2026-10-14)
 
+- Created `docs/GymOS_2_Project_Description.docx`, a one-page, text-only project summary. Its rendered page was reviewed in Word, and the DOCX package contains no embedded images.
 - Updated the README project description to explain the resident/admin flows and the roles of Flutter, Serverpod, PostgreSQL, on-device photo processing, and the server-side integrations.
 - Recovered the final walkthrough export into `video/` so its README link resolves. The editable video working files are unavailable in this checkout.
 - Re-ran the full Flutter test suite: 35 tests passed. `tool/setup.dart` passed Dart static analysis. No app or backend source code changed during this submission check.
