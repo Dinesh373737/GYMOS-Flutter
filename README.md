@@ -4,6 +4,20 @@ GymOS helps residents and small shared gyms plan around available equipment, rec
 
 This local development build has passing backend/database and Flutter tests, a live authenticated workout/event flow, live Groq tool-based draft creation, cached external fitness listings (allevents.in via the Parse.bot wrapper), an admin dashboard with member management, in-app notifications, progress trends, and a redesigned dark interface. Physical-device photo verification and cloud deployment remain incomplete. See [agent.md](agent.md) for current evidence and remaining work.
 
+## Run your own copy (another computer)
+
+Anyone can run GymOS on their own computer and Wi-Fi. They only need [Flutter](https://docs.flutter.dev/get-started/install) (it includes Dart) and, for the AI coach, a free Groq API key.
+
+```bash
+git clone https://github.com/Dinesh373737/GYMOS-Flutter.git
+cd GYMOS-Flutter
+dart tool/setup.dart
+```
+
+The setup script creates `gymos2/gymos2_server/config/passwords.yaml` with fresh local secrets, asks for the optional `GROQ_API_KEY` and `ALLEVENTS_API_KEY` (press Enter to skip either), fetches packages, and builds the web app. Then start the server with `start-gymos-server.cmd` (Windows) or `./start-gymos-server.sh` (macOS/Linux) and open `http://localhost:8082`. The first start downloads a private PostgreSQL. Sign-up verification codes are printed in the server window.
+
+Without a Groq key everything works except the "Ask GymOS" coach; without a Parse.bot key, Discover shows community events only. Other devices on the same Wi-Fi can open `http://<computer IP>:8082`, or install the APK below and enter `<computer IP>:8080` under "Server · Change".
+
 ## Install on an Android phone
 
 1. On the computer, double-click [`start-gymos-server.cmd`](start-gymos-server.cmd) (or run `dart run bin/main.dart --apply-migrations` in `gymos2/gymos2_server`) and keep that window open.
