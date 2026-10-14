@@ -1,8 +1,12 @@
 # GymOS 2.0
 
-GymOS helps residents and small shared gyms plan around available equipment, record workouts, check still-photo technique cues, and organize community fitness events. This Flutter and Serverpod rewrite retains the original fitness concepts and removes coursework visualizers from the product.
+GymOS 2.0 is a community fitness app for residents and shared gyms. Members can find available equipment, create workouts suited to their goals and recent training, log sets and progress, check exercise form from still photos, and join local fitness events. Admins manage the gym's equipment, maintenance reports, members, and events.
+
+**Flutter** provides the mobile and web interface, including workout tracking, OpenStreetMap event discovery, and on-device pose analysis for photo form checks. **Serverpod** provides the Dart backend: email authentication, typed client/server endpoints, PostgreSQL persistence for members and fitness data, live equipment updates, event caching, and the server-side AI coach integration. The app can run on a local Wi-Fi network; public cloud hosting has not been set up.
 
 This local development build has passing backend/database and Flutter tests, a live authenticated workout/event flow, live Groq tool-based draft creation, cached external fitness listings (allevents.in via the Parse.bot wrapper), an admin dashboard with member management, in-app notifications, progress trends, and a redesigned dark interface. Physical-device photo verification and cloud deployment remain incomplete. See [agent.md](agent.md) for current evidence and remaining work.
+
+Watch the [3:49 Android feature walkthrough](video/GymOS-2.0-mobile-walkthrough.mp4) for a caption-led tour of the main user and admin flows.
 
 ## Run your own copy (another computer)
 

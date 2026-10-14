@@ -9,6 +9,8 @@ original-daa/
 **/.env
 *.log
 .local-demo.json
+.video_tools/
+video/qa/
 
 # Stale local analyzer/format logs
 analysis-result.txt

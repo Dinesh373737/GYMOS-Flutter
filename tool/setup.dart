@@ -49,13 +49,35 @@ Future<void> main(List<String> args) async {
   }
 
   _step('2/3', 'Packages');
-  await _run('flutter', ['pub', 'get'], _workspace);
+  final pubGet = await _run(
+    'flutter',
+    ['pub', 'get'],
+    _workspace,
+    allowFailure: true,
+  );
+  final resolved = File('${_workspace.path}/.dart_tool/package_config.json')
+      .existsSync();
+  if (pubGet.code != 0) {
+    // Windows without Developer Mode resolves packages but cannot create the
+    // plugin symlinks that only Windows desktop builds need.
+    if (resolved && pubGet.output.contains('symlink support')) {
+      stdout.writeln(
+        '  Packages resolved. Windows Developer Mode is off, which only '
+        'matters for Windows desktop builds; continuing.',
+      );
+    } else {
+      _fail(
+        '"flutter pub get" failed. Check your Flutter install with '
+        '"flutter doctor".',
+      );
+    }
+  }
 
   if (args.contains('--skip-web')) {
     _step('3/3', 'Web app (skipped)');
   } else {
     _step('3/3', 'Web app (takes a few minutes the first time)');
-    await _run('flutter', ['build', 'web', '--release'], _app);
+    await _run('flutter', ['build', 'web', '--release', '--no-pub'], _app);
     final target = Directory('${_server.path}/web/app');
     if (target.existsSync()) target.deleteSync(recursive: true);
     _copy(Directory('${_app.path}/build/web'), target);
@@ -123,22 +145,39 @@ ${events == null ? '  # ALLEVENTS_API_KEY: \'paste-your-parse-bot-key\'' : "  AL
 ''';
 }
 
-Future<void> _run(String exe, List<String> args, Directory dir) async {
+/// Runs a command, echoing its output, and returns the exit code and output.
+Future<({int code, String output})> _run(
+  String exe,
+  List<String> args,
+  Directory dir, {
+  bool allowFailure = false,
+}) async {
   stdout.writeln('  > $exe ${args.join(' ')}');
   final process = await Process.start(
     exe,
     args,
     workingDirectory: dir.path,
     runInShell: true,
-    mode: ProcessStartMode.inheritStdio,
   );
+  final output = StringBuffer();
+  await Future.wait([
+    process.stdout.transform(systemEncoding.decoder).forEach((text) {
+      output.write(text);
+      stdout.write(text);
+    }),
+    process.stderr.transform(systemEncoding.decoder).forEach((text) {
+      output.write(text);
+      stderr.write(text);
+    }),
+  ]);
   final code = await process.exitCode;
-  if (code != 0) {
+  if (code != 0 && !allowFailure) {
     _fail(
       '"$exe ${args.join(' ')}" failed (exit $code). Is Flutter installed '
       'and on your PATH? Check with "flutter doctor".',
     );
   }
+  return (code: code, output: output.toString());
 }
 
 void _copy(Directory from, Directory to) {

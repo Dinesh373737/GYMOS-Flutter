@@ -2,6 +2,18 @@
 
 Updated: 2026-10-14
 
+## Submission check (2026-10-14)
+
+- Updated the README project description to explain the resident/admin flows and the roles of Flutter, Serverpod, PostgreSQL, on-device photo processing, and the server-side integrations.
+- Recovered the final walkthrough export into `video/` so its README link resolves. The editable video working files are unavailable in this checkout.
+- Re-ran the full Flutter test suite: 35 tests passed. `tool/setup.dart` passed Dart static analysis. No app or backend source code changed during this submission check.
+
+## Walkthrough video (2026-10-14)
+
+- Created [`video/GymOS-2.0-mobile-walkthrough.mp4`](video/GymOS-2.0-mobile-walkthrough.mp4): a 3:49, 1920×1080, 24 fps H.264/AAC product tour. The phone view uses real Android emulator captures; the first workout scenes include live screen recordings, with selected real frames for later sections. Short on-screen captions explain sign-up, Home, planning, workout session and set logging, Progress, Groq coach, Form Coach, Discover/external events, OpenStreetMap, equipment, Admin, Profile and notifications. No synthetic voiceover is used. The ambient instrumental was composed locally for this edit.
+- The final video is included in the repository. The working capture and composition files are not present in this checkout. The exported runtime, video/audio streams, representative opening/middle/closing frames, and non-clipping soundtrack level (mean −23.0 dB, peak −10.2 dB) were checked during creation.
+- The video is a feature tour, not proof of physical-device photo inference, a completed workout in this recording, or a live event join. Those boundaries remain as described below. The Parse.bot external listings are identified as a third-party wrapper, not the official AllEvents API.
+
 This is the implementation record requested by the user. It describes existing code separately from verification results and remaining requirements. The specification is `GymOS_2_Astra_Master_Implementation_Prompt_OpenStreetMap(1).docx` (`requirements-reference.txt` is an older extraction that lacks the OpenStreetMap section).
 
 ## Implemented
